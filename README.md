@@ -1,5 +1,5 @@
 # Dabrowski Software Development [ JavaScript ] 
-# JsUtilities
+# JsUtilityFunctions
 
 - NEW:
  - calculateCountdownTime (deadlineDate, yearMark, monthMark, dayMark, hourMark, minuteMark, secondMark)
