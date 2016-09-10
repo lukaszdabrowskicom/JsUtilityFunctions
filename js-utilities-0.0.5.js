@@ -1,5 +1,5 @@
 /*!
- * JsUtilities JavaScript library v0.0.3
+ * JsUtilities JavaScript library v0.0.5
  * (c) Łukasz Dąbrowski (https://github.com/lukaszdabrowskicom/JsUtilityFunctions)
  * License: MIT (http://www.opensource.org/licenses/mit-license.php)
  */
@@ -7,11 +7,92 @@
 (function (window) {
 
     var self = this;
+	
+	function calculateNumberOfDaysForCurrentMonthInternal(currentMonth, currentYear) {
+		if(currentMonth = 0) return 31;
+		else if(currentMonth = 1) {
+			if(currentYear % 4 == 0)
+				return 29;
+			return 28;
+		}
+		else if(currentMonth = 2) return 31;
+		else if(currentMonth = 3) return 30;
+		else if(currentMonth = 4) return 31;
+		else if(currentMonth = 5) return 30;
+		else if(currentMonth = 6) return 31;
+		else if(currentMonth = 7) return 31;
+		else if(currentMonth = 8) return 30;
+		else if(currentMonth = 9) return 31;
+		else if(currentMonth = 10) return 30;
+		else if(currentMonth = 11) return 31;		
+				
+	}
+	
+	function calculateCountdownTimeInternal(deadlineDate, yearMark, monthMark, dayMark, hourMark, minuteMark, secondMark) {
+	  var countdown = "time is up";
+	  var currentDate = new Date();
+	  var totalNumberOfMiliseconds = new Date(deadlineDate) - currentDate;
+	  
+	  if(totalNumberOfMiliseconds > 0) {
+		var seconds = 0;
+		var minutes = 0;
+		var hours = 0;
+		var days = 0;
+		var months = 0;
+		var years = 0;
 
+		for(var peek = totalNumberOfMiliseconds / 1000; peek > 0; peek -= 1) {
+		   seconds++;
+		   if(seconds==60) {
+			seconds = 0;
+			minutes++;
+		   }
+		   if(minutes==60) {
+			minutes=0;
+			hours++;
+		   }
+		   if(hours==24) {
+			hours=0;
+			days++;
+		   }
+		   if(days==calculateNumberOfDaysForCurrentMonthInternal(currentDate.getMonth(), currentDate.getFullYear())) {
+			days=0;
+			months++;
+		   }
+		   if(months==12) {
+			months=0;
+			years++;
+		   }
+		}
+		
+		if(seconds.toString().length < 2)
+			seconds = "0" + seconds;
+		if(minutes.toString().length < 2)
+			minutes = "0" + minutes;
+		if(hours.toString().length < 2)
+			hours = "0" + hours;
+		if(days.toString().length < 2)
+			days = "0" + days;
+		if(months.toString().length < 2)
+			months = "0" + months;		
+		if(years.toString().length < 2)
+			years = "0" + years;	
+		
+		countdown = years + (yearMark != undefined ?  yearMark : "") +
+					months + (monthMark != undefined ? monthMark : "") +
+					days + (dayMark != undefined ? dayMark : "") +
+					hours + (hourMark != undefined ? hourMark : "") +
+					minutes  + (minuteMark != undefined ? minuteMark : "") +
+					seconds + (secondMark != undefined ? secondMark : "");
+	  }
+
+	  return countdown;		
+	}
+	
     function calculateDateDifferenceInternal(startDate, endDate) {
         var sDate = startDate;
         var currentDate = endDate == undefined ? getCurrentDateInternal() : endDate;
-
+				
         var startYear = sDate.getFullYear();
         var startMonth = sDate.getMonth();
 
@@ -59,19 +140,19 @@
 
             if (years && months < 0) {
                 var months_n = (12 - Math.abs(months));
-                experience += months_n > 1 ? "in " + months_n + " months time" : "in " + months_n + " month time";
+                experience += months_n > 1 ? "in " + months_n + " months' time" : "in " + months_n + " month time";
             }
             else if (years && months == 0) {
                 experience += "in 1 year time";
             }
             else if (years && months > 0) {
-                experience += "in " + years + " year " + months + (months > 1 ? " months time" : " month time");
+                experience += "in " + years + " year " + months + (months > 1 ? " months' time" : " month time");
             }
             else if (years && years > 1) {
                 experience = "";
             }
             else {
-                experience += "in " + months + (months > 1 ? " months time" : " month time");
+                experience += "in " + months + (months > 1 ? " months' time" : " month time");
             }
         }
         else {
@@ -287,7 +368,6 @@
 
 
     //public api
-
     Array.prototype.sliceOff = function (arrayOfIndicesToRemoveItemsFromInputArray, applyToObject, optionalArrayOfObjectProps) {
         return sliceOffInternal(this, arrayOfIndicesToRemoveItemsFromInputArray, applyToObject, optionalArrayOfObjectProps);
     }
@@ -307,11 +387,18 @@
     self.calculateDateDifference = function (startDate, endDate) {
         return calculateDateDifferenceInternal(startDate, endDate);
     }
-    
+	
     self.getCurrentDateFormatted = function(date) {
         return getCurrentDateFormattedInternal(date);
     }
-    
+	
+	self.calculateNumberOfDaysForCurrentMonth = function(currentMonth, currentYear) {
+		return 	calculateNumberOfDaysForCurrentMonthInternal(currentMonth, currentYear);
+	}
+	
+	self.calculateCountdownTime = function(deadlineDate, yearMark, monthMark, dayMark, hourMark, minuteMark, secondMark) {
+		return calculateCountdownTimeInternal(deadlineDate, yearMark, monthMark, dayMark, hourMark, minuteMark, secondMark);
+	}
+	
     window.jsUtilities = window.jsUtilities || self;
-
 })(window)
