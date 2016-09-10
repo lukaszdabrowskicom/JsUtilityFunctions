@@ -10,6 +10,13 @@
     - the remaining parameters are marks for years, months, days, hours, minutes and seconds respectively
  - <strong>UPLOADED 2016-09-10 16:45:00 GMT +01:00 [FEATURE]</strong>
  - 
+ - calculateNumberOfDaysForCurrentMonth(currentMonth, currentYear)
+   - calculates number of days for the given month and year
+ - Params:
+   - currentMonth: month of the year we want to calculate number of days
+   - currentMonth: year based upon we want to calculate number of days
+ - <strong>UPLOADED 2016-09-10 16:45:00 GMT +01:00 [FEATURE]</strong>
+ - 
 - OLD:
  - sliceOff(arrayOfIndicesToRemoveItemsFromInputArray, applyToObject, optionalArrayOfObjectProps)
   - from inut array of objects removes those objects with ids specified in the first argument (all in one batch). You can filter input array of objects by supplying the second argument and optional third argument with specified object props and values. It is optimized for ordered list of array indices for objects to be removed;
