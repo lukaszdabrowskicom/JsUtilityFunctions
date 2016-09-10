@@ -14,7 +14,7 @@
    - calculates number of days for the given month and year
  - Params:
    - currentMonth: month of the year we want to calculate number of days
-   - currentMonth: year based upon we want to calculate number of days
+   - currentYear: year based upon we want to calculate number of days
  - <strong>UPLOADED 2016-09-10 16:45:00 GMT +01:00 [FEATURE]</strong>
  - 
 - OLD:
