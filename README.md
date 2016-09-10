@@ -11,7 +11,7 @@
  - <strong>UPLOADED 2016-09-10 16:45:00 GMT +01:00 [FEATURE]</strong>
  - 
  - calculateNumberOfDaysForCurrentMonth(currentMonth, currentYear)
-   - calculates number of days for the given month and year
+   - calculates number of days for the given month and year including leap year as well
  - Params:
    - currentMonth: month of the year we want to calculate number of days
     - currentYear: year based upon we want to calculate number of days
