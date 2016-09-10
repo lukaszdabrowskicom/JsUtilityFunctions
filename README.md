@@ -3,7 +3,7 @@
 
 - NEW:
  - calculateCountdownTime (deadlineDate, yearMark, monthMark, dayMark, hourMark, minuteMark, secondMark)
-   - which calculates time from current day up to some date in the future and returns in the following format depending on provided year-, month-, day-, hour-, minute- and second- marks
+   - calculates time from current day up to some date in the future and returns in the following format depending on provided year-, month-, day-, hour-, minute- and second- marks
     <strong>06y 10m 03d 16h : 11m : 45s</strong>*
  - Params:
    - deadlineDate: deadline date in the future
